@@ -159,132 +159,141 @@
 
 </body>
 </html> 
-/* ----------------------------------- */
-/* 1. Pengaturan Dasar */
-/* ----------------------------------- */
+
 body {
-    font-family: 'Poppins', sans-serif;
+    font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f0f4f8; /* Biru muda/Abu-abu muda */
+    background-color: #f0f2f5; 
     color: #333;
-    line-height: 1.6;
 }
 
-.container {
-    max-width: 1200px;
-    margin: 20px auto;
-    padding: 30px;
-    background-color: #ffffff;
-    border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-}
-
-/* ----------------------------------- */
-/* 2. Header */
-/* ----------------------------------- */
-.header {
+header {
+    background-color: #007bff; /* Warna Biru Khas TU/Admin */
+    color: white;
+    padding: 20px 0;
     text-align: center;
-    padding: 40px 20px;
-    background-color: #1e3a8a; /* Biru Tua Sekolah */
-    color: #ffffff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+main {
+    max-width: 1200px;
+    margin: 30px auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
+}
+
+/* -------------------------------------- */
+/* STYLING KHUSUS DIAGRAM (ORGANIGRAM) */
+/* -------------------------------------- */
+.organigram {
+    text-align: center;
+    padding: 30px 0;
+    margin-bottom: 40px;
+    border: 1px dashed #ccc;
+    border-radius: 10px;
+}
+
+.node {
+    display: inline-block;
+    background-color: #e6f2ff; /* Latar Node */
+    border: 1px solid #007bff;
+    border-radius: 5px;
+    padding: 10px 15px;
+    margin: 10px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.node h4 {
+    margin: 0 0 5px 0;
+    color: #0056b3;
+    font-size: 1.1em;
+}
+
+.node p {
+    margin: 0;
+    font-size: 0.9em;
+}
+
+/* Garis Vertikal (Koneksi Hierarki) */
+.line-v {
+    width: 2px;
+    height: 30px;
+    background-color: #007bff;
+    margin: 0 auto;
+}
+
+/* Garis Horizontal (Koneksi Staf Bidang) */
+.line-h {
+    width: 80%;
+    height: 2px;
+    background-color: #007bff;
+    margin: 0 auto 10px auto; 
+}
+
+/* Styling Khusus Level */
+.level-1 {
+    background-color: #d1ecf1; /* Kepala Sekolah */
+}
+.level-2 {
+    background-color: #cce5ff; /* Kasubag TU */
+}
+
+/* Container untuk Staf Bidang (untuk Flexbox) */
+.staf-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 15px;
+}
+.staf-container .node {
+    flex-basis: calc(25% - 20px); /* Maksimal 4 per baris */
+    min-width: 150px;
+    background-color: #f8f9fa; 
+}
+
+/* -------------------------------------- */
+/* STYLING INFORMASI TAMBAHAN */
+/* -------------------------------------- */
+.tugas-dan-pendukung h3 {
+    color: #007bff;
+    border-bottom: 2px solid #007bff;
+    padding-bottom: 5px;
     margin-bottom: 20px;
 }
 
-.header h1 {
-    font-size: 2.5em;
-    margin-bottom: 5px;
-    font-weight: 700;
-}
-
-.header h2 {
-    font-size: 1.5em;
-    margin-top: 0;
-    font-weight: 400;
-    opacity: 0.9;
-}
-
-/* ----------------------------------- */
-/* 3. Organogram Pimpinan */
-/* ----------------------------------- */
-.section-pimpinan {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 40px;
-}
-
-.jabatan {
-    padding: 15px 25px;
-    margin: 10px 0;
-    border-radius: 10px;
-    text-align: center;
-    width: 280px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-.jabatan h3, .jabatan h5 {
-    margin: 0 0 5px 0;
-    font-size: 1.1em;
-    font-weight: 600;
-}
-
-.jabatan p, .jabatan ul {
-    margin: 0;
-    font-size: 1.1em;
-    font-weight: 700;
-}
-
-.jabatan ul {
-    list-style-type: none;
-    padding: 0;
-    font-weight: 400;
-    font-size: 1em;
-}
-
-/* Warna Pimpinan */
-.kepala-sekolah {
-    background-color: #fef9c3; /* Kuning Paling Cerah */
-    border: 3px solid #f59e0b;
-}
-
-.kasubag-tu {
-    background-color: #bae6fd; /* Biru Muda */
-    border: 3px solid #0ea5e9;
-}
-
-/* Garis Penghubung */
-.line {
-    background-color: #4b5563;
-}
-
-.line.vertical {
-    width: 2px;
-    height: 30px;
-}
-
-.line.horizontal {
-    width: 90%;
-    height: 2px;
-}
-
-/* ----------------------------------- */
-/* 4. Bidang dan Petugas Grid */
-/* ----------------------------------- */
-.section-bidang {
-    display: flex;
-    justify-content: space-between;
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 20px;
-    margin-bottom: 40px;
-    border-top: 1px dashed #ccc;
-    padding-top: 30px;
 }
 
-.grid-card-container {
-    flex: 1;
-    min-width: 45%;
+.info-block {
+    background-color: #f8f9fa;
+    padding: 15px;
+    border-left: 5px solid #007bff;
+    border-radius: 5px;
 }
 
-.grid-card-container h4 {
+.info-block h4 {
+    color: #007bff;
+    margin-top: 0;
+}
 
-
+/* Media Query untuk Responsivitas */
+@media (max-width: 768px) {
+    .staf-container .node {
+        flex-basis: calc(50% - 20px); /* 2 per baris di tablet/mobile */
+    }
+    .line-h {
+        width: 90%;
+    }
+}
+@media (max-width: 480px) {
+    .staf-container .node {
+        flex-basis: 100%; /* 1 per baris di HP */
+    }
+}
