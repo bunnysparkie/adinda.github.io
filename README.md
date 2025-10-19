@@ -154,9 +154,10 @@
     </main>
 
     <footer>
-        <p>&copy; 2024 Tata Usaha SMA Negeri 103 Jakarta</p>
+        <p>&copy; 2025 Tata Usaha SMA Negeri 103 Jakarta</p>
     </footer>
 
 </body>
 </html> 
+
 
