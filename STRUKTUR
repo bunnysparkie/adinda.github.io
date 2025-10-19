@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Struktur Organisasi TU SMA N 103 Jakarta</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+        <h1>STRUKTUR ORGANISASI TATA USAHA</h1>
+        <h2>SMA NEGERI 103 JAKARTA</h2>
+
+        <div class="organogram">
+
+            <div class="jabatan kepala-sekolah">
+                <h3>Kepala Sekolah</h3>
+                <p>Suparni, M.Pd.</p>
+            </div>
+            
+            <div class="line"></div>
+
+            <div class="jabatan kasubag-tu">
+                <h3>Kasubag TU</h3>
+                <p>Martin Malau, S.Pd.</p>
+            </div>
+
+            <div class="line-horizontal"></div>
+
+            <div class="bidang-container">
+                <div class="bidang-group">
+                    <h4>Bidang-Bidang</h4>
+                    
+                    <ul class="bidang-list">
+                        <li class="jabatan bidang kesiswaan">
+                            <h5>Kesiswaan</h5>
+                            <p>Yulianti</p>
+                        </li>
+                        <li class="jabatan bidang sarana">
+                            <h5>Sarana dan Prasarana</h5>
+                            <p>Kuwat Yuliyono</p>
+                        </li>
+                        <li class="jabatan bidang kepegawaian">
+                            <h5>Kepegawaian</h5>
+                            <p>Temti Malau</p>
+                        </li>
+                        <li class="jabatan bidang operator">
+                            <h5>Operator</h5>
+                            <p>Per, S.Kom</p>
+                        </li>
+                        <li class="jabatan bidang bendahara">
+                            <h5>Bendahara</h5>
+                            <p>Sugati, S.Pd.</p>
+                        </li>
+                        <li class="jabatan bidang perpustakaan">
+                            <h5>Perpustakaan</h5>
+                            <p>Aelis Yuningsih, S.Kom</p>
+                        </li>
+                        <li class="jabatan bidang laboran">
+                            <h5>Laboran</h5>
+                            <p>Ananda Joel, S.E.</p>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="petugas-container">
+                    <h4>Petugas Pendukung</h4>
+                    
+                    <div class="jabatan petugas caraka">
+                        <h5>Caraka Kebersihan</h5>
+                        <ul>
+                            <li>Supandi</li>
+                            <li>Tumijo</li>
+                            <li>Slamet Kahono</li>
+                        </ul>
+                    </div>
+                    <div class="jabatan petugas keamanan">
+                        <h5>Keamanan / Satpam</h5>
+                        <p>M. Rizki Furqoni</p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+</html>
+<link rel="stylesheet" href="styles.css">
