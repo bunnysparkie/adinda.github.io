@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Struktur Organisasi TU SMA N 103 Jakarta</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+        <h1>STRUKTUR ORGANISASI TATA USAHA</h1>
+        <h2>SMA NEGERI 103 JAKARTA</h2>
+
+        <div class="organogram">
+
+            <div class="jabatan kepala-sekolah">
+                <h3>Kepala Sekolah</h3>
+                <p>Suparni, M.Pd.</p>
+            </div>
+            
+            <div class="line"></div>
+
+            <div class="jabatan kasubag-tu">
+                <h3>Kasubag TU</h3>
+                <p>Martin Malau, S.Pd.</p>
+            </div>
+
+            <div class="line-horizontal"></div>
+
+            <div class="bidang-container">
+                <div class="bidang-group">
+                    <h4>Bidang-Bidang</h4>
+                    
+                    <ul class="bidang-list">
+                        <li class="jabatan bidang kesiswaan">
+                            <h5>Kesiswaan</h5>
+                            <p>Yulianti</p>
+                        </li>
+                        <li class="jabatan bidang sarana">
+                            <h5>Sarana dan Prasarana</h5>
+                            <p>Kuwat Yuliyono</p>
+                        </li>
+                        <li class="jabatan bidang kepegawaian">
+                            <h5>Kepegawaian</h5>
+                            <p>Temti Malau</p>
+                        </li>
+                        <li class="jabatan bidang operator">
+                            <h5>Operator</h5>
+                            <p>Per, S.Kom</p>
+                        </li>
+                        <li class="jabatan bidang bendahara">
+                            <h5>Bendahara</h5>
+                            <p>Sugati, S.Pd.</p>
+                        </li>
+                        <li class="jabatan bidang perpustakaan">
+                            <h5>Perpustakaan</h5>
+                            <p>Aelis Yuningsih, S.Kom</p>
+                        </li>
+                        <li class="jabatan bidang laboran">
+                            <h5>Laboran</h5>
+                            <p>Ananda Joel, S.E.</p>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="petugas-container">
+                    <h4>Petugas Pendukung</h4>
+                    
+                    <div class="jabatan petugas caraka">
+                        <h5>Caraka Kebersihan</h5>
+                        <ul>
+                            <li>Supandi</li>
+                            <li>Tumijo</li>
+                            <li>Slamet Kahono</li>
+                        </ul>
+                    </div>
+                    <div class="jabatan petugas keamanan">
+                        <h5>Keamanan / Satpam</h5>
+                        <p>M. Rizki Furqoni</p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+</html>
+/* ----------------------------------- */
+/* 1. Pengaturan Dasar */
+/* ----------------------------------- */
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f4f8; /* Biru muda/Abu-abu muda */
+    color: #333;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 30px;
+    background-color: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* ----------------------------------- */
+/* 2. Header */
+/* ----------------------------------- */
+.header {
+    text-align: center;
+    padding: 40px 20px;
+    background-color: #1e3a8a; /* Biru Tua Sekolah */
+    color: #ffffff;
+    margin-bottom: 20px;
+}
+
+.header h1 {
+    font-size: 2.5em;
+    margin-bottom: 5px;
+    font-weight: 700;
+}
+
+.header h2 {
+    font-size: 1.5em;
+    margin-top: 0;
+    font-weight: 400;
+    opacity: 0.9;
+}
+
+/* ----------------------------------- */
+/* 3. Organogram Pimpinan */
+/* ----------------------------------- */
+.section-pimpinan {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+.jabatan {
+    padding: 15px 25px;
+    margin: 10px 0;
+    border-radius: 10px;
+    text-align: center;
+    width: 280px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.jabatan h3, .jabatan h5 {
+    margin: 0 0 5px 0;
+    font-size: 1.1em;
+    font-weight: 600;
+}
+
+.jabatan p, .jabatan ul {
+    margin: 0;
+    font-size: 1.1em;
+    font-weight: 700;
+}
+
+.jabatan ul {
+    list-style-type: none;
+    padding: 0;
+    font-weight: 400;
+    font-size: 1em;
+}
+
+/* Warna Pimpinan */
+.kepala-sekolah {
+    background-color: #fef9c3; /* Kuning Paling Cerah */
+    border: 3px solid #f59e0b;
+}
+
+.kasubag-tu {
+    background-color: #bae6fd; /* Biru Muda */
+    border: 3px solid #0ea5e9;
+}
+
+/* Garis Penghubung */
+.line {
+    background-color: #4b5563;
+}
+
+.line.vertical {
+    width: 2px;
+    height: 30px;
+}
+
+.line.horizontal {
+    width: 90%;
+    height: 2px;
+}
+
+/* ----------------------------------- */
+/* 4. Bidang dan Petugas Grid */
+/* ----------------------------------- */
+.section-bidang {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 40px;
+    border-top: 1px dashed #ccc;
+    padding-top: 30px;
+}
+
+.grid-card-container {
+    flex: 1;
+    min-width: 45%;
+}
+
+.grid-card-container h4 {
