@@ -4,8 +4,8 @@
 const stafData = [
     { bidang: "Kesiswaan", nama: "Yulianti" },
     { bidang: "Sarana dan Prasarana", nama: "Kuwat Yuliyono" },
-    { bidang: "Kepegawaian", nama: "Temti Malau" },
-    { bidang: "Operator", nama: "Per, S.Kom" },
+    { bidang: "Kepegawaian", nama: "Martin Malau" },
+    { bidang: "Operator", nama: "Peri, S.Kom" },
     { bidang: "Bendahara", nama: "Sugati, S.Pd." },
     { bidang: "Perpustakaan", nama: "Aelis Yuningsih, S.Kom" },
     { bidang: "Laboran", nama: "Ananda Joel, S.E." },
@@ -32,7 +32,7 @@ const kesiswaanCounts = [
     { kelas: "Kelas XII", jumlah: 252 }
 ];
 
-const sarprasItems = [
+const sarprasTasks = [
     "Meja", "Kursi/Sofa", "Lemari Kecil", "Rak Kecil", "Komputer", 
     "Keyboard", "Printer", "Map", "Kalender", "Figuran", "Tirai"
 ];
@@ -89,10 +89,6 @@ function generateKesiswaan() {
     container.innerHTML = htmlContent;
 }
 
-// FUNGSI BARU: Khusus untuk Sarpras (menggunakan generateInfoBlock)
-function generateSarpras() {
-    generateInfoBlock('sarpras-area', 'Inventaris Sarana & Prasarana', sarprasItems);
-}
 
 // ===================================================
 // EKSEKUSI
@@ -100,7 +96,6 @@ function generateSarpras() {
 document.addEventListener('DOMContentLoaded', () => {
     generateStafCards();
     generateInfoBlock('keuangan-area', 'Administrasi Keuangan', keuanganTasks);
-    generateInfoBlock('persuratan-area', 'Surat Persuratan', persuratanTasks);
-    generateKesiswaan(); // Panggil Kesiswaan
-    generateSarpras(); // Panggil Sarpras
+    generateInfoBlock('persuratan-area', 'Surat Persuratan', persuratanTasks);n
+    generateInfoBlock('sarpras-area', 'Sarana dan Prasarana', saerprasTasks);n
 });
