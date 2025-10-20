@@ -1,90 +1,159 @@
+:root {
+    --primary-purple: #673ab7; /* Ungu Utama */
+    --light-purple: #ede7f6;   /* Ungu Sangat Muda */
+    --dark-purple: #4527a0;    /* Ungu Gelap */
+    --accent-pink: #d81b60;    /* Pink Aksesn */
+    --text-color: #333;
+    --shadow-light: 0 4px 15px rgba(0, 0, 0, 0.08);
+    --shadow-medium: 0 6px 20px rgba(0, 0, 0, 0.12);
+}
+
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Poppins', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f4f7f6; /* Abu-abu muda */
-    color: #333;
+    background-color: var(--light-purple);
+    color: var(--text-color);
     line-height: 1.6;
 }
 
 header {
-    background-color: #00897b; /* Hijau Teal */
+    background-color: var(--primary-purple);
     color: white;
-    padding: 25px 0;
+    padding: 35px 20px;
     text-align: center;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    box-shadow: var(--shadow-medium);
+    margin-bottom: 30px;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 3em;
+    font-weight: 700;
 }
 
 main {
-    max-width: 1100px;
+    max-width: 1200px;
     margin: 30px auto;
-    padding: 20px;
+    padding: 30px;
     background-color: white;
-    border-radius: 10px;
-    box-shadow: 0 0 15px rgba(0,0,0,0.05);
+    border-radius: 15px;
+    box-shadow: var(--shadow-medium);
 }
 
-h3 {
-    color: #00897b;
-    border-bottom: 2px solid #00897b;
-    padding-bottom: 8px;
-    margin-bottom: 20px;
+.section-container h3 {
+    color: var(--dark-purple);
+    border-bottom: 3px solid var(--accent-pink);
+    padding-bottom: 10px;
+    margin-bottom: 30px;
     text-transform: uppercase;
+    font-size: 1.8em;
+    font-weight: 600;
+    text-align: center;
 }
 
-/* Kartu dan Kontainer Flexbox */
+/* Kartu Staf */
 .cards-container {
     display: flex;
     flex-wrap: wrap;
-    gap: 20px;
+    gap: 25px;
     justify-content: center;
 }
 
 .card {
-    background-color: #e0f2f1; /* Hijau Muda */
-    padding: 15px;
-    border-radius: 6px;
-    width: calc(30% - 20px); 
-    min-width: 200px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    background-color: #ffffff; 
+    border: 1px solid var(--light-purple);
+    border-radius: 10px;
+    padding: 20px;
+    width: calc(30% - 25px); 
+    min-width: 250px;
+    box-shadow: var(--shadow-light);
     text-align: center;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: var(--shadow-medium);
+}
+
+.card h4 {
+    color: var(--primary-purple);
+    margin: 0 0 10px 0;
+    font-size: 1.3em;
+    font-weight: 600;
 }
 
 .pimpinan-card {
-    background-color: #b2dfdb; /* Warna berbeda untuk pimpinan */
-    width: calc(45% - 20px);
+    background-color: #f3e5f5; /* Ungu sedikit lebih terang */
+    border-color: var(--primary-purple);
+    width: calc(45% - 25px); 
 }
 
 /* Detail Info Grid */
 .info-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(3, 1fr); /* Tiga kolom utama */
+    gap: 25px;
+}
+.info-large {
+    grid-column: span 1; /* Biarkan kolom ini tetap 1 */
 }
 
 .info-block {
-    background-color: #f6fdfc;
-    padding: 15px;
-    border-left: 4px solid #00897b;
-    border-radius: 4px;
+    background-color: #ffffff;
+    padding: 20px;
+    border-left: 5px solid var(--accent-pink);
+    border-radius: 8px;
+    box-shadow: var(--shadow-light);
+}
+
+.info-block h4 {
+    color: var(--dark-purple);
+    font-weight: 600;
+    margin-bottom: 15px;
+    border-bottom: 1px dashed var(--light-purple);
+    padding-bottom: 5px;
 }
 
 .info-block ul {
     list-style: none;
     padding: 0;
 }
+.info-block ul li {
+    padding: 5px 0;
+    position: relative;
+    padding-left: 20px;
+}
 .info-block ul li:before {
-    content: "•";
-    color: #00897b;
-    font-weight: bold;
-    display: inline-block; 
-    width: 1em;
-    margin-left: -1em;
+    content: "●";
+    color: var(--accent-pink);
+    position: absolute;
+    left: 0;
+    font-size: 0.8em;
+    top: 6px;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: var(--primary-purple);
+    color: white;
+    margin-top: 50px;
 }
 
 /* Responsif */
+@media (max-width: 1050px) {
+    .info-grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Mengubah ke responsif */
+    }
+}
+
 @media (max-width: 768px) {
     .card, .pimpinan-card {
         width: 100%;
+        min-width: unset;
     }
+    main { padding: 15px; margin: 15px auto; }
 }
