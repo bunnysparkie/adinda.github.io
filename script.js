@@ -1,107 +1,29 @@
-// ===================================================
-// DATA (ARRAY)
-// ===================================================
-const stafData = [
-    { bidang: "Kesiswaan", nama: "Yulianti" },
-    { bidang: "Sarana dan Prasarana", nama: "Kuwat Yuliyono" },
-    { bidang: "Kepegawaian", nama: "Temti Malau" },
-    { bidang: "Operator", nama: "Per, S.Kom" },
-    { bidang: "Bendahara", nama: "Sugati, S.Pd." },
-    { bidang: "Perpustakaan", nama: "Aelis Yuningsih, S.Kom" },
-    { bidang: "Laboran", nama: "Ananda Joel, S.E." },
-    // Petugas Pendukung
-    { bidang: "Keamanan / Satpam", nama: "M. Rizki Furqoni", type: "Pendukung" },
-    { bidang: "Caraka Kebersihan", nama: "Supandi, Tumijo, Slamet Kahono", type: "Pendukung" },
-];
-
-const keuanganTasks = [
-    "Laporan Pendapatan dan Pengeluaran", "Laporan Aset dan Kewajiban", "Kebijakan Akuntansi", 
-    "Pengungkapan dan Catatan Penjelasan", "Perencanaan Anggaran", "Pencarian Sumber Dana", 
-    "Penggunaan Keuangan", "Pengawasan dan Evaluasi", "Pertanggungjawaban"
-];
-
-const persuratanTasks = [
-    "Surat Masuk, Keluar, Keterangan, Internal, Eksternal (Jenis)",
-    "Penerimaan dan Pencatatan", "Penyortiran dan Pendisposisian", 
-    "Pengolahan dan Pembuatan", "Pengarsipan", "Pengiriman"
-];
-
-const kesiswaanCounts = [
-    { kelas: "Kelas X", jumlah: 216 },
-    { kelas: "Kelas XI", jumlah: 252 },
-    { kelas: "Kelas XII", jumlah: 252 }
-];
-
-const sarprasItems = [
-    "Meja, Kursi/Sofa", "Lemari Kecil, Rak Kecil", "Komputer, Keyboard, Printer", 
-    "Map, Kalender, Figuran, Tirai"
-];
-
-// ===================================================
-// GENERATOR KONTEN (LOOPING)
-// ===================================================
-
-function generateStafCards() {
-    const container = document.getElementById('staf-area');
-    let htmlContent = '';
-
-    stafData.forEach(staf => {
-        htmlContent += `
-            <div class="card ${staf.type ? staf.type.toLowerCase() : 'staf-bidang'}">
-                <h4>${staf.bidang}</h4>
-                <p><strong>${staf.nama}</strong></p>
-            </div>
-        `;
-    });
-    container.innerHTML = htmlContent;
-}
-
-function generateInfoBlock(areaId, title, itemsArray) {
-    const container = document.getElementById(areaId);
-    let htmlContent = `<h4>${title}</h4><ul>`;
-
-    itemsArray.forEach(item => {
-        htmlContent += `<li>${item}</li>`;
-    });
-
-    htmlContent += `</ul>`;
-    container.innerHTML = htmlContent;
-}
-
-function generateKesiswaanSarpras() {
-    const kesiswaanContainer = document.getElementById('kesiswaan-area');
-    let kesiswaanHTML = `<h4>Data Kesiswaan</h4>`;
-    
-    // Tabel Kesiswaan
-    kesiswaanHTML += `
-        <table>
-            <tr><th>Kelas</th><th>Jumlah Siswa</th></tr>
-    `;
-    kesiswaanCounts.forEach(data => {
-        kesiswaanHTML += `<tr><td>${data.kelas}</td><td>${data.jumlah}</td></tr>`;
-    });
-    kesiswaHTML += `</table>`;
-    
-    kesiswaanContainer.innerHTML = kesiswaanHTML;
-
-    // Sarpras (di blok terpisah)
-    const sarprasContainer = document.getElementById('sarpras-area');
-    let sarprasHTML = `<h4>Inventaris Sarana & Prasarana</h4><ul>`;
-    
-    sarprasItems.forEach(item => {
-        sarprasHTML += `<li>${item}</li>`;
-    });
-    sarprasHTML += `</ul>`;
-    
-    sarprasContainer.innerHTML = sarprasHTML;
-}
-
-// ===================================================
-// EKSEKUSI
-// ===================================================
-document.addEventListener('DOMContentLoaded', () => {
-    generateStafCards();
-    generateInfoBlock('keuangan-area', 'Administrasi Keuangan', keuanganTasks);
-    generateInfoBlock('persuratan-area', 'Surat Persuratan', persuratanTasks);
-    generateKesiswaanSarpras();
+document.addEventListener('DOMContentLoaded', function() {
+    // Memastikan tab Administrasi Keuangan terbuka saat halaman dimuat
+    document.getElementById('AdministrasiKeuangan').classList.add('active');
 });
+
+/**
+ * Fungsi untuk mengaktifkan tab konten yang dipilih
+ * @param {Event} evt - Objek event dari klik tombol
+ * @param {string} tabName - ID dari konten tab yang akan ditampilkan
+ */
+function openTab(evt, tabName) {
+    let i, tabcontent, tabbuttons;
+
+    // Sembunyikan semua elemen tab-content
+    tabcontent = document.getElementsByClassName("tab-content");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].classList.remove('active');
+    }
+
+    // Hapus class "active" dari semua tombol tab
+    tabbuttons = document.getElementsByClassName("tab-button");
+    for (i = 0; i < tabbuttons.length; i++) {
+        tabbuttons[i].classList.remove('active');
+    }
+
+    // Tampilkan konten tab yang spesifik dan aktifkan tombol yang ditekan
+    document.getElementById(tabName).classList.add('active');
+    evt.currentTarget.classList.add('active');
+}
