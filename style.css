@@ -1,26 +1,90 @@
-/* Anda dapat menggunakan kode CSS lengkap dari respons sebelumnya (style.css/tu_diagram_style.css) */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f7f6; /* Abu-abu muda */
+    color: #333;
+    line-height: 1.6;
+}
+
+header {
+    background-color: #00897b; /* Hijau Teal */
+    color: white;
+    padding: 25px 0;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+main {
+    max-width: 1100px;
+    margin: 30px auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.05);
+}
+
+h3 {
+    color: #00897b;
+    border-bottom: 2px solid #00897b;
+    padding-bottom: 8px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+
+/* Kartu dan Kontainer Flexbox */
 .cards-container {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
     justify-content: center;
 }
-.card {
-    background-color: #e6f2ff; 
-    border: 1px solid #007bff;
-    border-radius: 5px;
-    padding: 15px;
-    width: calc(33% - 20px);
-    text-align: center;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
-}
-table {
-    width: 50%; 
-    margin: 20px auto;
-    border-collapse: collapse;
-}
-th, td { border: 1px solid #ddd; padding: 10px; }
 
-/* Styling Rekursi */
-.task-item { margin-left: 20px; }
-.task-item > ul { list-style-type: disc; }
+.card {
+    background-color: #e0f2f1; /* Hijau Muda */
+    padding: 15px;
+    border-radius: 6px;
+    width: calc(30% - 20px); 
+    min-width: 200px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+.pimpinan-card {
+    background-color: #b2dfdb; /* Warna berbeda untuk pimpinan */
+    width: calc(45% - 20px);
+}
+
+/* Detail Info Grid */
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.info-block {
+    background-color: #f6fdfc;
+    padding: 15px;
+    border-left: 4px solid #00897b;
+    border-radius: 4px;
+}
+
+.info-block ul {
+    list-style: none;
+    padding: 0;
+}
+.info-block ul li:before {
+    content: "•";
+    color: #00897b;
+    font-weight: bold;
+    display: inline-block; 
+    width: 1em;
+    margin-left: -1em;
+}
+
+/* Responsif */
+@media (max-width: 768px) {
+    .card, .pimpinan-card {
+        width: 100%;
+    }
+}
