@@ -3,15 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Organisasi TU (JS Generated)</title>
-    <link rel="stylesheet" href="style.css">
-    <style>
-        /* CSS sederhana untuk demonstrasi, detail ada di style.css */
-        body { font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: #f0f2f5; }
-        header { background-color: #007bff; color: white; padding: 20px; text-align: center; }
-        main { max-width: 1200px; margin: 20px auto; padding: 20px; background-color: white; border-radius: 8px; }
-    </style>
-</head>
+    <title>Organisasi TU SMA 103 JKT</title>
+    <link rel="stylesheet" href="style.css"> </head>
 <body>
 
     <header>
@@ -20,23 +13,40 @@
     </header>
 
     <main>
-        <h3>Staf Bidang (Generated via Looping & Array)</h3>
-        <section id="staf-container" class="cards-container"></section>
-        
+        <section class="pimpinan">
+            <h3>Pimpinan</h3>
+            <div class="cards-container">
+                <div class="card pimpinan-card"><h4>Kepala Sekolah</h4><p>Suparni, M.Pd.</p></div>
+                <div class="card pimpinan-card"><h4>Kasubag TU</h4><p>Martin Malau, S.Pd.</p></div>
+            </div>
+        </section>
+
         <hr>
 
-        <h3>Data Kesiswaan (Generated via Looping & Array)</h3>
-        <section id="kesiswaan-data"></section>
+        <section class="bidang-bidang">
+            <h3>Staf Bidang & Petugas Pendukung</h3>
+            <div id="staf-area" class="cards-container">
+                </div>
+        </section>
 
         <hr>
 
-        <h3>Struktur Tugas (Representasi Rekursi)</h3>
-        <section id="tugas-struktur"></section>
-
+        <section class="detail-info">
+            <h3>Informasi Tambahan & Tugas Pokok</h3>
+            <div class="info-grid">
+                <div id="keuangan-area" class="info-block"></div>
+                <div id="persuratan-area" class="info-block"></div>
+                <div id="kesiswaan-area" class="info-block"></div>
+                <div id="sarpras-area" class="info-block"></div>
+            </div>
+        </section>
     </main>
-    
-    <script src="script.js"></script>
-</body>
+
+    <footer>
+        <p>&copy; 2024 Tata Usaha SMA Negeri 103 Jakarta</p>
+    </footer>
+
+    <script src="script.js"></script> </body>
 </html>
 
 
