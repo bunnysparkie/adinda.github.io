@@ -33,8 +33,8 @@ const kesiswaanCounts = [
 ];
 
 const sarprasItems = [
-    "Meja, Kursi/Sofa", "Lemari Kecil, Rak Kecil", "Komputer, Keyboard, Printer", 
-    "Map, Kalender, Figuran, Tirai"
+    "Meja", "Kursi/Sofa", "Lemari Kecil", "Rak Kecil", "Komputer", 
+    "Keyboard", "Printer", "Map", "Kalender", "Figuran", "Tirai"
 ];
 
 // ===================================================
@@ -68,37 +68,29 @@ function generateInfoBlock(areaId, title, itemsArray) {
     container.innerHTML = htmlContent;
 }
 
-function generateKesiswaanSarpras() {
-    const container = document.getElementById('data-area');
+function generateKesiswaan() {
+    const container = document.getElementById('kesiswaan-area');
     let htmlContent = `<h4>Data Kesiswaan</h4>`;
-
+    
     // Tabel Kesiswaan
     htmlContent += `
-        <table style="width:100%; margin-bottom: 20px; border-collapse: collapse;">
+        <table>
             <thead>
-                <tr style="background-color: ${getComputedStyle(document.documentElement).getPropertyValue('--light-purple')}">
-                    <th style="padding: 8px; border: 1px solid #ccc;">Kelas</th>
-                    <th style="padding: 8px; border: 1px solid #ccc;">Jumlah Siswa</th>
-                </tr>
+                <tr><th>Kelas</th><th>Jumlah Siswa</th></tr>
             </thead>
             <tbody>
     `;
     kesiswaanCounts.forEach(data => {
-        htmlContent += `<tr style="border: 1px solid #ccc;">
-                            <td style="padding: 8px; border: 1px solid #eee;">${data.kelas}</td>
-                            <td style="padding: 8px; border: 1px solid #eee;">${data.jumlah}</td>
-                        </tr>`;
+        htmlContent += `<tr><td>${data.kelas}</td><td>${data.jumlah}</td></tr>`;
     });
     htmlContent += `</tbody></table>`;
     
-    // Daftar Sarpras
-    htmlContent += `<h4>Inventaris Sarana & Prasarana</h4><ul>`;
-    sarprasItems.forEach(item => {
-        htmlContent += `<li>${item}</li>`;
-    });
-    htmlContent += `</ul>`;
-    
     container.innerHTML = htmlContent;
+}
+
+function generateSarpras() {
+    const container = document.getElementById('sarpras-area');
+    generateInfoBlock('sarpras-area', 'Inventaris Sarana & Prasarana', sarprasItems);
 }
 
 
@@ -109,5 +101,6 @@ document.addEventListener('DOMContentLoaded', () => {
     generateStafCards();
     generateInfoBlock('keuangan-area', 'Administrasi Keuangan', keuanganTasks);
     generateInfoBlock('persuratan-area', 'Surat Persuratan', persuratanTasks);
-    generateKesiswaanSarpras(); 
+    generateKesiswaan(); 
+    generateSarpras(); 
 });
