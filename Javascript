@@ -1,138 +1,100 @@
 // ===================================================
-// 1. ARRAY: Mendefinisikan Data Struktur Organisasi
+// DATA (ARRAY)
 // ===================================================
-
-const stafArray = [
-    { bidang: "Kepala Sekolah", nama: "Suparni, M.Pd.", role: "Pimpinan" },
-    { bidang: "Kasubag TU", nama: "Martin Malau, S.Pd.", role: "Pimpinan" },
-    { bidang: "Kesiswaan", nama: "Yulianti", role: "Staf" },
-    { bidang: "Sarana dan Prasarana", nama: "Kuwat Yuliyono", role: "Staf" },
-    { bidang: "Kepegawaian", nama: "Temti Malau", role: "Staf" },
-    { bidang: "Operator", nama: "Per, S.Kom", role: "Staf" },
-    { bidang: "Bendahara", nama: "Sugati, S.Pd.", role: "Staf" },
-    { bidang: "Perpustakaan", nama: "Aelis Yuningsih, S.Kom", role: "Staf" },
-    { bidang: "Laboran", nama: "Ananda Joel, S.E.", role: "Staf" },
+const stafData = [
+    { bidang: "Kesiswaan", nama: "Yulianti" },
+    { bidang: "Sarana dan Prasarana", nama: "Kuwat Yuliyono" },
+    { bidang: "Kepegawaian", nama: "Temti Malau" },
+    { bidang: "Operator", nama: "Per, S.Kom" },
+    { bidang: "Bendahara", nama: "Sugati, S.Pd." },
+    { bidang: "Perpustakaan", nama: "Aelis Yuningsih, S.Kom" },
+    { bidang: "Laboran", nama: "Ananda Joel, S.E." },
+    // Petugas Pendukung
+    { bidang: "Keamanan / Satpam", nama: "M. Rizki Furqoni", role: "Pendukung" },
+    { bidang: "Caraka Kebersihan", nama: "Supandi, Tumijo, Slamet Kahono", role: "Pendukung" },
 ];
 
-const kesiswaanArray = [
+const keuanganTasks = [
+    "Laporan Pendapatan dan Pengeluaran", "Laporan Aset dan Kewajiban", "Kebijakan Akuntansi", 
+    "Pengungkapan dan Catatan Penjelasan", "Perencanaan Anggaran", "Pencarian Sumber Dana", 
+    "Penggunaan Keuangan", "Pengawasan dan Evaluasi", "Pertanggungjawaban"
+];
+
+const persuratanTasks = [
+    "Surat Masuk/Keluar/Keterangan/Internal/Eksternal (Jenis)",
+    "Penerimaan dan Pencatatan", "Penyortiran dan Pendisposisian", 
+    "Pengolahan dan Pembuatan", "Pengarsipan", "Pengiriman"
+];
+
+const kesiswaanCounts = [
     { kelas: "Kelas X", jumlah: 216 },
     { kelas: "Kelas XI", jumlah: 252 },
     { kelas: "Kelas XII", jumlah: 252 }
 ];
 
-// Struktur Tugas berlapis untuk demonstrasi Rekursi
-const tugasRekursif = {
-    title: "Tugas Administrasi TU",
-    subTugas: [
-        {
-            title: "Administrasi Keuangan",
-            subTugas: [
-                { title: "Laporan Pendapatan dan Pengeluaran" },
-                { title: "Laporan Aset dan Kewajiban" },
-                {
-                    title: "Perencanaan Anggaran",
-                    subTugas: [
-                        { title: "Pencarian Sumber Dana" },
-                        { title: "Penggunaan Keuangan" }
-                    ]
-                },
-                { title: "Pengawasan dan Evaluasi" }
-            ]
-        },
-        {
-            title: "Surat Persuratan",
-            subTugas: [
-                { title: "Penerimaan dan pencatatan" },
-                { title: "Penyortiran dan pendisposisian" },
-                { title: "Pengarsipan dan Pengiriman" }
-            ]
-        }
-    ]
-};
-
 // ===================================================
-// 2. LOOPING: Fungsi untuk Menampilkan Staf
+// GENERATOR (LOOPING)
 // ===================================================
 
-function generateStafCards() {
-    const container = document.getElementById('staf-container');
+function generateStaf() {
+    const container = document.getElementById('staf-area');
     let htmlContent = '';
 
-    // Menggunakan forEach (bentuk Looping) untuk mengolah setiap objek dalam array
-    stafArray.forEach(staf => {
+    // Looping melalui Array stafData
+    stafData.forEach(staf => {
         htmlContent += `
-            <div class="card ${staf.role.toLowerCase()}">
+            <div class="card ${staf.role ? staf.role.toLowerCase() : 'staf-bidang'}">
                 <h4>${staf.bidang}</h4>
                 <p><strong>${staf.nama}</strong></p>
             </div>
         `;
     });
-
     container.innerHTML = htmlContent;
 }
 
-// Fungsi Looping untuk Data Kesiswaan
-function generateKesiswaanTable() {
-    const container = document.getElementById('kesiswaan-data');
-    let tableHTML = `
-        <table>
-            <tr><th>Kelas</th><th>Jumlah Siswa</th></tr>
-    `;
+function generateTasks(areaId, title, tasksArray) {
+    const container = document.getElementById(areaId);
+    let htmlContent = `<h4>${title}</h4><ul>`;
 
-    // Menggunakan forEach (bentuk Looping) untuk membuat baris tabel
-    kesiswaanArray.forEach(data => {
-        tableHTML += `
-            <tr>
-                <td>${data.kelas}</td>
-                <td>${data.jumlah}</td>
-            </tr>
-        `;
+    // Looping melalui Array tasksArray
+    tasksArray.forEach(task => {
+        htmlContent += `<li>${task}</li>`;
     });
 
-    tableHTML += `</table>`;
-    container.innerHTML = tableHTML;
+    htmlContent += `</ul>`;
+    container.innerHTML = htmlContent;
 }
 
-// ===================================================
-// 3. REKURSI: Fungsi untuk Memproses Struktur Tugas Berlapis
-// ===================================================
+function generateKesiswaan() {
+    const container = document.getElementById('kesiswaan-area');
+    let htmlContent = `<h4>Data Kesiswaan</h4><ul>`;
 
-// Fungsi ini memanggil dirinya sendiri jika ada subTugas
-function generateTaskStructure(data) {
-    let html = `<li class="task-item"><strong>${data.title}</strong>`;
+    // Looping melalui Array kesiswaanCounts
+    kesiswaanCounts.forEach(data => {
+        htmlContent += `<li>${data.kelas}: <strong>${data.jumlah}</strong> siswa</li>`;
+    });
 
-    // Cek apakah ada sub-tugas
-    if (data.subTugas && data.subTugas.length > 0) {
-        html += '<ul>';
-        // Looping (forEach) di dalam rekursi
-        data.subTugas.forEach(subItem => {
-            // PANGGILAN REKURSIF: Fungsi memanggil dirinya sendiri
-            html += generateTaskStructure(subItem); 
-        });
-        html += '</ul>';
-    }
-
-    html += '</li>';
-    return html;
-}
-
-// Fungsi utama untuk menjalankan Rekursi
-function displayTaskStructure() {
-    const container = document.getElementById('tugas-struktur');
-    let finalHTML = '<ul>';
+    htmlContent += `</ul>`;
     
-    // Mulai proses rekursi dari root tugas
-    finalHTML += generateTaskStructure(tugasRekursif);
-    
-    finalHTML += '</ul>';
-    container.innerHTML = finalHTML;
+    // Tambah data sarpras (dibuat manual karena datanya banyak)
+    htmlContent += `
+        <h4>Inventaris Sarpras (Contoh)</h4>
+        <ul>
+            <li>Meja, Kursi/Sofa</li>
+            <li>Lemari Kecil, Rak Kecil</li>
+            <li>Komputer, Keyboard, Printer</li>
+            <li>Map, Kalender, Figuran, Tirai</li>
+        </ul>
+    `;
+    container.innerHTML = htmlContent;
 }
 
 // ===================================================
-// Jalankan Semua Fungsi Saat Halaman Dimuat
+// EKSEKUSI
 // ===================================================
 document.addEventListener('DOMContentLoaded', () => {
-    generateStafCards(); // Menjalankan Looping dan Array
-    generateKesiswaanTable(); // Menjalankan Looping dan Array
-    displayTaskStructure(); // Menjalankan Rekursi, Looping, dan Array
+    generateStaf();
+    generateTasks('keuangan-area', 'Administrasi Keuangan', keuanganTasks);
+    generateTasks('persuratan-area', 'Surat Persuratan', persuratanTasks);
+    generateKesiswaan();
 });
