@@ -1,106 +1,55 @@
-// ===================================================
-// DATA (ARRAY)
-// ===================================================
-const stafData = [
-    { bidang: "Kesiswaan", nama: "Yulianti" },
-    { bidang: "Sarana dan Prasarana", nama: "Kuwat Yuliyono" },
-    { bidang: "Kepegawaian", nama: "Temti Malau" },
-    { bidang: "Operator", nama: "Per, S.Kom" },
-    { bidang: "Bendahara", nama: "Sugati, S.Pd." },
-    { bidang: "Perpustakaan", nama: "Aelis Yuningsih, S.Kom" },
-    { bidang: "Laboran", nama: "Ananda Joel, S.E." },
-    // Petugas Pendukung
-    { bidang: "Keamanan / Satpam", nama: "M. Rizki Furqoni", type: "Pendukung" },
-    { bidang: "Caraka Kebersihan", nama: "Supandi, Tumijo, Slamet Kahono", type: "Pendukung" },
+// Data Bidang-Bidang untuk di-inject ke HTML
+const bidangData = [
+    { role: "Kesiswaan", name: "Yulianti" },
+    { role: "Sarana dan Prasarana", name: "Kuwat Yuliyono" },
+    { role: "Kepegawaian", name: "Temti Malau" },
+    { role: "Operator", name: "Per, S.Kom" },
+    { role: "Bendahara", name: "Sugati, S.Pd." },
+    { role: "Perpustakaan", name: "Aelis Yuningsih, S.Kom" },
+    { role: "Laboran", name: "Ananda Joel, S.E." }
 ];
 
-const keuanganTasks = [
-    "Laporan Pendapatan dan Pengeluaran", "Laporan Aset dan Kewajiban", "Kebijakan Akuntansi", 
-    "Pengungkapan dan Catatan Penjelasan", "Perencanaan Anggaran", "Pencarian Sumber Dana", 
-    "Penggunaan Keuangan", "Pengawasan dan Evaluasi", "Pertanggungjawaban"
-];
+// Fungsi untuk membuat dan menampilkan grid Bidang-Bidang
+function renderBidangBidang() {
+    const container = document.getElementById('bidang-bidang');
+    
+    // Buat elemen grid
+    const grid = document.createElement('div');
+    grid.className = 'bidang-grid';
 
-const persuratanTasks = [
-    "Surat Masuk, Keluar, Keterangan, Internal, Eksternal",
-    "Penerimaan dan Pencatatan", "Penyortiran dan Pendisposisian", 
-    "Pengolahan dan Pembuatan", "Pengarsipan", "Pengiriman"
-];
-
-const kesiswaanCounts = [
-    { kelas: "Kelas X", jumlah: 216 },
-    { kelas: "Kelas XI", jumlah: 252 },
-    { kelas: "Kelas XII", jumlah: 252 }
-];
-
-const sarprasItems = [
-    "Meja", "Kursi/Sofa", "Lemari Kecil", "Rak Kecil", "Komputer", 
-    "Keyboard", "Printer", "Map", "Kalender", "Figuran", "Tirai"
-];
-
-// ===================================================
-// GENERATOR KONTEN (LOOPING)
-// ===================================================
-
-function generateStafCards() {
-    const container = document.getElementById('staf-area');
-    let htmlContent = '';
-
-    stafData.forEach(staf => {
-        htmlContent += `
-            <div class="card ${staf.type ? staf.type.toLowerCase() : 'staf-bidang'}">
-                <h4>${staf.bidang}</h4>
-                <p><strong>${staf.nama}</strong></p>
-            </div>
+    bidangData.forEach(item => {
+        const itemDiv = document.createElement('div');
+        itemDiv.className = 'bidang-item';
+        
+        itemDiv.innerHTML = `
+            <p class="bidang-role">${item.role}</p>
+            <p class="bidang-name">${item.name}</p>
         `;
-    });
-    container.innerHTML = htmlContent;
-}
-
-function generateInfoBlock(areaId, title, itemsArray) {
-    const container = document.getElementById(areaId);
-    let htmlContent = `<h4>${title}</h4><ul>`;
-
-    itemsArray.forEach(item => {
-        htmlContent += `<li>${item}</li>`;
+        grid.appendChild(itemDiv);
     });
 
-    htmlContent += `</ul>`;
-    container.innerHTML = htmlContent;
+    container.appendChild(grid);
 }
 
-function generateKesiswaan() {
-    const container = document.getElementById('kesiswaan-area');
-    let htmlContent = `<h4>Data Kesiswaan</h4>`;
-    
-    // Tabel Kesiswaan
-    htmlContent += `
-        <table>
-            <thead>
-                <tr><th>Kelas</th><th>Jumlah Siswa</th></tr>
-            </thead>
-            <tbody>
-    `;
-    kesiswaanCounts.forEach(data => {
-        htmlContent += `<tr><td>${data.kelas}</td><td>${data.jumlah}</td></tr>`;
-    });
-    htmlContent += `</tbody></table>`;
-    
-    container.innerHTML = htmlContent;
+// Fungsi untuk Toggle (tampil/sembunyi) detail
+function toggleDetails(id) {
+    const detailsElement = document.getElementById(id);
+    const parentCard = detailsElement.closest('.card, .info-card');
+    const toggleIcon = parentCard.querySelector('.toggle-icon');
+
+    if (detailsElement.classList.contains('active')) {
+        detailsElement.classList.remove('active');
+        toggleIcon.classList.remove('rotated');
+    } else {
+        detailsElement.classList.add('active');
+        toggleIcon.classList.add('rotated');
+    }
 }
 
-function generateSarpras() {
-    const container = document.getElementById('sarpras-area');
-    generateInfoBlock('sarpras-area', 'Inventaris Sarana & Prasarana', sarprasItems);
-}
-
-
-// ===================================================
-// EKSEKUSI
-// ===================================================
+// Panggil fungsi setelah DOM dimuat
 document.addEventListener('DOMContentLoaded', () => {
-    generateStafCards();
-    generateInfoBlock('keuangan-area', 'Administrasi Keuangan', keuanganTasks);
-    generateInfoBlock('persuratan-area', 'Surat Persuratan', persuratanTasks);
-    generateKesiswaan(); 
-    generateSarpras(); 
+    renderBidangBidang();
+    
+    // Pastikan fungsi toggleDetails bisa diakses dari HTML
+    window.toggleDetails = toggleDetails;
 });
