@@ -4,8 +4,8 @@
 const stafData = [
     { bidang: "Kesiswaan", nama: "Yulianti" },
     { bidang: "Sarana dan Prasarana", nama: "Kuwat Yuliyono" },
-    { bidang: "Kepegawaian", nama: "Martin Malau" },
-    { bidang: "Operator", nama: "Peri, S.Kom" },
+    { bidang: "Kepegawaian", nama: "Temti Malau" },
+    { bidang: "Operator", nama: "Per, S.Kom" },
     { bidang: "Bendahara", nama: "Sugati, S.Pd." },
     { bidang: "Perpustakaan", nama: "Aelis Yuningsih, S.Kom" },
     { bidang: "Laboran", nama: "Ananda Joel, S.E." },
@@ -21,7 +21,7 @@ const keuanganTasks = [
 ];
 
 const persuratanTasks = [
-    "Surat Masuk, Keluar, Keterangan, Internal, Eksternal (Jenis)",
+    "Surat Masuk, Keluar, Keterangan, Internal, Eksternal",
     "Penerimaan dan Pencatatan", "Penyortiran dan Pendisposisian", 
     "Pengolahan dan Pembuatan", "Pengarsipan", "Pengiriman"
 ];
@@ -32,13 +32,13 @@ const kesiswaanCounts = [
     { kelas: "Kelas XII", jumlah: 252 }
 ];
 
-const sarprasTasks = [
+const sarprasItems = [
     "Meja", "Kursi/Sofa", "Lemari Kecil", "Rak Kecil", "Komputer", 
     "Keyboard", "Printer", "Map", "Kalender", "Figuran", "Tirai"
 ];
 
 // ===================================================
-// GENERATOR KONTEN (LOOPING)
+// FUNGSI GENERATOR (Sama untuk Keuangan, Persuratan, Sarpras)
 // ===================================================
 
 function generateStafCards() {
@@ -68,12 +68,11 @@ function generateInfoBlock(areaId, title, itemsArray) {
     container.innerHTML = htmlContent;
 }
 
-// FUNGSI BARU: Khusus untuk Kesiswaan
 function generateKesiswaan() {
     const container = document.getElementById('kesiswaan-area');
     let htmlContent = `<h4>Data Kesiswaan</h4>`;
     
-    // Tabel Kesiswaan
+    // Kesiswaan menggunakan tabel
     htmlContent += `
         <table>
             <thead>
@@ -96,6 +95,8 @@ function generateKesiswaan() {
 document.addEventListener('DOMContentLoaded', () => {
     generateStafCards();
     generateInfoBlock('keuangan-area', 'Administrasi Keuangan', keuanganTasks);
-    generateInfoBlock('persuratan-area', 'Surat Persuratan', persuratanTasks);n
-    generateInfoBlock('sarpras-area', 'Sarana dan Prasarana', saerprasTasks);n
+    generateInfoBlock('persuratan-area', 'Surat Persuratan', persuratanTasks);
+    generateKesiswaan(); 
+    // Sarpras menggunakan generateInfoBlock (sama seperti Persuratan)
+    generateInfoBlock('sarpras-area', 'Inventaris Sarana & Prasarana', sarprasItems); 
 });
