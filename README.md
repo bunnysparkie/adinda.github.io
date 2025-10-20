@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Organisasi TU SMA 103 JKT</title>
-    <link rel="stylesheet" href="style.css"> </head>
+    <title>Struktur Organisasi TU - SMAN 103 JKT (Ungu)</title>
+    <link rel="stylesheet" href="style.css"> <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
 <body>
 
     <header>
@@ -13,7 +14,7 @@
     </header>
 
     <main>
-        <section class="pimpinan">
+        <section class="section-container">
             <h3>Pimpinan</h3>
             <div class="cards-container">
                 <div class="card pimpinan-card"><h4>Kepala Sekolah</h4><p>Suparni, M.Pd.</p></div>
@@ -21,23 +22,18 @@
             </div>
         </section>
 
-        <hr>
-
-        <section class="bidang-bidang">
+        <section class="section-container">
             <h3>Staf Bidang & Petugas Pendukung</h3>
             <div id="staf-area" class="cards-container">
                 </div>
         </section>
 
-        <hr>
-
-        <section class="detail-info">
+        <section class="section-container">
             <h3>Informasi Tambahan & Tugas Pokok</h3>
             <div class="info-grid">
                 <div id="keuangan-area" class="info-block"></div>
                 <div id="persuratan-area" class="info-block"></div>
-                <div id="kesiswaan-area" class="info-block"></div>
-                <div id="sarpras-area" class="info-block"></div>
+                <div id="data-area" class="info-block info-large"></div> 
             </div>
         </section>
     </main>
@@ -48,7 +44,3 @@
 
     <script src="script.js"></script> </body>
 </html>
-
-
-
-
