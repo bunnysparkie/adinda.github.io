@@ -10,8 +10,8 @@ const stafData = [
     { bidang: "Perpustakaan", nama: "Aelis Yuningsih, S.Kom" },
     { bidang: "Laboran", nama: "Ananda Joel, S.E." },
     // Petugas Pendukung
-    { bidang: "Keamanan / Satpam", nama: "M. Rizki Furqoni", role: "Pendukung" },
-    { bidang: "Caraka Kebersihan", nama: "Supandi, Tumijo, Slamet Kahono", role: "Pendukung" },
+    { bidang: "Keamanan / Satpam", nama: "M. Rizki Furqoni", type: "Pendukung" },
+    { bidang: "Caraka Kebersihan", nama: "Supandi, Tumijo, Slamet Kahono", type: "Pendukung" },
 ];
 
 const keuanganTasks = [
@@ -21,7 +21,7 @@ const keuanganTasks = [
 ];
 
 const persuratanTasks = [
-    "Surat Masuk/Keluar/Keterangan/Internal/Eksternal (Jenis)",
+    "Surat Masuk, Keluar, Keterangan, Internal, Eksternal",
     "Penerimaan dan Pencatatan", "Penyortiran dan Pendisposisian", 
     "Pengolahan dan Pembuatan", "Pengarsipan", "Pengiriman"
 ];
@@ -32,18 +32,22 @@ const kesiswaanCounts = [
     { kelas: "Kelas XII", jumlah: 252 }
 ];
 
+const sarprasItems = [
+    "Meja, Kursi/Sofa", "Lemari Kecil, Rak Kecil", "Komputer, Keyboard, Printer", 
+    "Map, Kalender, Figuran, Tirai"
+];
+
 // ===================================================
-// GENERATOR (LOOPING)
+// GENERATOR KONTEN (LOOPING)
 // ===================================================
 
-function generateStaf() {
+function generateStafCards() {
     const container = document.getElementById('staf-area');
     let htmlContent = '';
 
-    // Looping melalui Array stafData
     stafData.forEach(staf => {
         htmlContent += `
-            <div class="card ${staf.role ? staf.role.toLowerCase() : 'staf-bidang'}">
+            <div class="card ${staf.type ? staf.type.toLowerCase() : 'staf-bidang'}">
                 <h4>${staf.bidang}</h4>
                 <p><strong>${staf.nama}</strong></p>
             </div>
@@ -52,49 +56,58 @@ function generateStaf() {
     container.innerHTML = htmlContent;
 }
 
-function generateTasks(areaId, title, tasksArray) {
+function generateInfoBlock(areaId, title, itemsArray) {
     const container = document.getElementById(areaId);
     let htmlContent = `<h4>${title}</h4><ul>`;
 
-    // Looping melalui Array tasksArray
-    tasksArray.forEach(task => {
-        htmlContent += `<li>${task}</li>`;
+    itemsArray.forEach(item => {
+        htmlContent += `<li>${item}</li>`;
     });
 
     htmlContent += `</ul>`;
     container.innerHTML = htmlContent;
 }
 
-function generateKesiswaan() {
-    const container = document.getElementById('kesiswaan-area');
-    let htmlContent = `<h4>Data Kesiswaan</h4><ul>`;
+function generateKesiswaanSarpras() {
+    const container = document.getElementById('data-area');
+    let htmlContent = `<h4>Data Kesiswaan</h4>`;
 
-    // Looping melalui Array kesiswaanCounts
+    // Tabel Kesiswaan
+    htmlContent += `
+        <table style="width:100%; margin-bottom: 20px; border-collapse: collapse;">
+            <thead>
+                <tr style="background-color: ${getComputedStyle(document.documentElement).getPropertyValue('--light-purple')}">
+                    <th style="padding: 8px; border: 1px solid #ccc;">Kelas</th>
+                    <th style="padding: 8px; border: 1px solid #ccc;">Jumlah Siswa</th>
+                </tr>
+            </thead>
+            <tbody>
+    `;
     kesiswaanCounts.forEach(data => {
-        htmlContent += `<li>${data.kelas}: <strong>${data.jumlah}</strong> siswa</li>`;
+        htmlContent += `<tr style="border: 1px solid #ccc;">
+                            <td style="padding: 8px; border: 1px solid #eee;">${data.kelas}</td>
+                            <td style="padding: 8px; border: 1px solid #eee;">${data.jumlah}</td>
+                        </tr>`;
     });
-
+    htmlContent += `</tbody></table>`;
+    
+    // Daftar Sarpras
+    htmlContent += `<h4>Inventaris Sarana & Prasarana</h4><ul>`;
+    sarprasItems.forEach(item => {
+        htmlContent += `<li>${item}</li>`;
+    });
     htmlContent += `</ul>`;
     
-    // Tambah data sarpras (dibuat manual karena datanya banyak)
-    htmlContent += `
-        <h4>Inventaris Sarpras (Contoh)</h4>
-        <ul>
-            <li>Meja, Kursi/Sofa</li>
-            <li>Lemari Kecil, Rak Kecil</li>
-            <li>Komputer, Keyboard, Printer</li>
-            <li>Map, Kalender, Figuran, Tirai</li>
-        </ul>
-    `;
     container.innerHTML = htmlContent;
 }
+
 
 // ===================================================
 // EKSEKUSI
 // ===================================================
 document.addEventListener('DOMContentLoaded', () => {
-    generateStaf();
-    generateTasks('keuangan-area', 'Administrasi Keuangan', keuanganTasks);
-    generateTasks('persuratan-area', 'Surat Persuratan', persuratanTasks);
-    generateKesiswaan();
+    generateStafCards();
+    generateInfoBlock('keuangan-area', 'Administrasi Keuangan', keuanganTasks);
+    generateInfoBlock('persuratan-area', 'Surat Persuratan', persuratanTasks);
+    generateKesiswaanSarpras(); 
 });
