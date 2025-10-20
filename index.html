@@ -3,45 +3,139 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Struktur Organisasi TU - SMA 103 Jakarta</title>
+    <title>Struktur Organisasi TU - SMA Negeri 103 Jakarta</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
     <header>
-        <h1>STRUKTUR ORGANISASI TATA USAHA</h1>
+        <h1>Struktur Organisasi Tata Usaha 🏛️</h1>
         <h2>SMA NEGERI 103 JAKARTA</h2>
     </header>
 
     <main>
-        <section class="section-container">
-            <h3>Pimpinan</h3>
-            <div class="cards-container">
-                <div class="card pimpinan-card"><h4>Kepala Sekolah</h4><p>Suparni, M.Pd.</p></div>
-                <div class="card pimpinan-card"><h4>Kasubag TU</h4><p>Martin Malau, S.Pd.</p></div>
-            </div>
-        </section>
-
-        <section class="section-container">
-            <h3>Staf Bidang & Petugas Pendukung</h3>
-            <div id="staf-area" class="cards-container">
+        <section class="org-chart">
+            <h3>Pimpinan dan Kepala Bagian</h3>
+            <div class="tree-container">
+                <div class="node head">
+                    <div class="title">Kepala Sekolah</div>
+                    <div class="name">Suparni, M.Pd.</div>
                 </div>
-        </section>
+                <div class="line vertical"></div>
+                <div class="node sub-head">
+                    <div class="title">Kasubag TU</div>
+                    <div class="name">Martin Malau, S.Pd.</div>
+                </div>
 
-        <section class="section-container">
-            <h3>Informasi Tambahan & Tugas Pokok</h3>
-            <div class="info-grid">
-                <div id="keuangan-area" class="info-block"></div>
-                <div id="persuratan-area" class="info-block"></div>
-                <div id="kesiswaan-area" class="info-block"></div>
-                <div id="sarpras-area" class="info-block"></div>
+                <div class="line horizontal"></div>
+                <div class="branches-container">
+                    <div class="node branch" data-bidang="kesiswaan">
+                        <div class="title">Kesiswaan</div>
+                        <div class="name">Yulianti</div>
+                    </div>
+                    <div class="node branch" data-bidang="sarpras">
+                        <div class="title">Sarana & Prasarana</div>
+                        <div class="name">Kuwat Yuliyono</div>
+                    </div>
+                    <div class="node branch" data-bidang="kepegawaian">
+                        <div class="title">Kepegawaian</div>
+                        <div class="name">Temti Malau</div>
+                    </div>
+                    <div class="node branch" data-bidang="operator">
+                        <div class="title">Operator</div>
+                        <div class="name">Per, S.Kom</div>
+                    </div>
+                    <div class="node branch" data-bidang="bendahara">
+                        <div class="title">Bendahara</div>
+                        <div class="name">Sugati, S.Pd.</div>
+                    </div>
+                    <div class="node branch" data-bidang="perpustakaan">
+                        <div class="title">Perpustakaan</div>
+                        <div class="name">Aelis Yuningsih, S.Kom</div>
+                    </div>
+                    <div class="node branch" data-bidang="laboran">
+                        <div class="title">Laboran</div>
+                        <div class="name">Ananda Joel, S.E.</div>
+                    </div>
+                </div>
             </div>
         </section>
+
+        <hr>
+
+        <section class="info-details">
+            <h2>Informasi Detail & Tugas</h2>
+            
+            <div class="tabs">
+                <button class="tab-button active" onclick="openTab(event, 'AdministrasiKeuangan')">Administrasi Keuangan</button>
+                <button class="tab-button" onclick="openTab(event, 'SuratPersuratan')">Surat Persuratan</button>
+                <button class="tab-button" onclick="openTab(event, 'Kesiswaan')">Data Kesiswaan</button>
+                <button class="tab-button" onclick="openTab(event, 'PetugasPendukung')">Petugas Pendukung</button>
+            </div>
+
+            <div id="AdministrasiKeuangan" class="tab-content active">
+                <h4>Tugas Administrasi Keuangan 💰</h4>
+                <ul>
+                    <li>Laporan Pendapatan dan Pengeluaran</li>
+                    <li>Laporan Aset dan Kewajiban</li>
+                    <li>Kebijakan Akuntansi</li>
+                    <li>Pengungkapan dan Catatan Penjelasan</li>
+                    <li>Perencanaan Anggaran</li>
+                    <li>Pencarian Sumber Dana</li>
+                    <li>Penggunaan Keuangan</li>
+                    <li>Pengawasan dan Evaluasi</li>
+                    <li>Pertanggungjawaban</li>
+                </ul>
+            </div>
+
+            <div id="SuratPersuratan" class="tab-content">
+                <h4>Tugas Surat Persuratan ✉️</h4>
+                <ul>
+                    <li>Surat masuk & Surat keluar</li>
+                    <li>Surat keterangan, Surat internal, Surat eksternal</li>
+                    <li>Penerimaan dan pencatatan</li>
+                    <li>Penyortiran dan pendisposisian</li>
+                    <li>Pengolahan dan pembuatan</li>
+                    <li>Pengarsipan</li>
+                    <li>Pengiriman</li>
+                </ul>
+            </div>
+
+            <div id="Kesiswaan" class="tab-content">
+                <h4>Data Jumlah Siswa 🎓</h4>
+                <p>Total Siswa berdasarkan Tingkat:</p>
+                <div class="data-siswa">
+                    <div>Kelas X: <span>216</span></div>
+                    <div>Kelas XI: <span>252</span></div>
+                    <div>Kelas XII: <span>252</span></div>
+                </div>
+            </div>
+
+            <div id="PetugasPendukung" class="tab-content">
+                <h4>Daftar Petugas Pendukung 🧑‍🔧</h4>
+                <h5>Caraka Kebersihan:</h5>
+                <ul>
+                    <li>Supandi</li>
+                    <li>Tumijo</li>
+                    <li>Slamet Kahono</li>
+                </ul>
+                <h5>Keamanan / Satpam:</h5>
+                <p>M. Rizki Furqoni</p>
+                <br>
+                <h5>Sarana & Prasarana (Contoh Inventaris):</h5>
+                <ul class="inventaris">
+                    <li>Meja, Kursi/Sofa, Lemari Kecil, Rak Kecil</li>
+                    <li>Komputer, Keyboard, Printer</li>
+                    <li>Map, Kalender, Figuran, Tirai</li>
+                </ul>
+            </div>
+        </section>
+
     </main>
 
     <footer>
-        <p>&copy; 2025 Tata Usaha SMA Negeri 103 Jakarta</p>
+        <p>&copy; 2025 Tata Usaha SMA Negeri 103 Jakarta. Hak Cipta Dilindungi.</p>
     </footer>
 
     <script src="script.js"></script>
