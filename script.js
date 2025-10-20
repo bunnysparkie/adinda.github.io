@@ -1,83 +1,107 @@
-document.addEventListener('DOMContentLoaded', () => {
-    // Data Struktur Organisasi
-    const organisasiData = {
-        bidang: [
-            { role: "Kesiswaan", name: "Yulianti" },
-            { role: "Sarana dan Prasarana", name: "Kuwat Yuliyono" },
-            { role: "Kepegawaian", name: "Temti Malau" },
-            { role: "Operator", name: "Per, S.Kom" },
-            { role: "Bendahara", name: "Sugati, S.Pd." },
-            { role: "Perpustakaan", name: "Aelis Yuningsih, S.Kom" },
-            { role: "Laboran", name: "Ananda Joel, S.E." }
-        ],
-        kesiswaan: [
-            "Kelas X : 216",
-            "Kelas XI : 252",
-            "Kelas XII : 252"
-        ],
-        sarana: [
-            "Meja", "Kursi/Sofa", "Lemari Kecil", "Rak Kecil",
-            "Komputer", "Keyboard", "Printer", "Map", "Kalender",
-            "Figuran", "Tirai"
-        ],
-        keuangan: [
-            "Laporan Pendapatan dan Pengeluaran",
-            "Laporan Aset dan Kewajiban",
-            "Kebijakan Akuntansi",
-            "Perencanaan Anggaran",
-            "Pengawasan dan Evaluasi",
-            "Pertanggungjawaban"
-        ],
-        persuratan: [
-            "Surat masuk dan keluar",
-            "Surat keterangan",
-            "Penerimaan dan pencatatan",
-            "Penyortiran dan pendisposisian",
-            "Pengarsipan",
-            "Pengiriman"
-        ]
-    };
+// ===================================================
+// DATA (ARRAY)
+// ===================================================
+const stafData = [
+    { bidang: "Kesiswaan", nama: "Yulianti" },
+    { bidang: "Sarana dan Prasarana", nama: "Kuwat Yuliyono" },
+    { bidang: "Kepegawaian", nama: "Temti Malau" },
+    { bidang: "Operator", nama: "Per, S.Kom" },
+    { bidang: "Bendahara", nama: "Sugati, S.Pd." },
+    { bidang: "Perpustakaan", nama: "Aelis Yuningsih, S.Kom" },
+    { bidang: "Laboran", nama: "Ananda Joel, S.E." },
+    // Petugas Pendukung
+    { bidang: "Keamanan / Satpam", nama: "M. Rizki Furqoni", type: "Pendukung" },
+    { bidang: "Caraka Kebersihan", nama: "Supandi, Tumijo, Slamet Kahono", type: "Pendukung" },
+];
 
-    // 1. Fungsi untuk mengisi Bidang-Bidang
-    const bidangContainer = document.querySelector('.bidang-container');
-    if (bidangContainer) {
-        organisasiData.bidang.forEach((item, index) => {
-            const bidangItem = document.createElement('div');
-            bidangItem.classList.add('bidang-item', 'card');
-            // Menambahkan delay pada animasi fade-in
-            bidangItem.style.animationDelay = `${0.1 * index}s`;
+const keuanganTasks = [
+    "Laporan Pendapatan dan Pengeluaran", "Laporan Aset dan Kewajiban", "Kebijakan Akuntansi", 
+    "Pengungkapan dan Catatan Penjelasan", "Perencanaan Anggaran", "Pencarian Sumber Dana", 
+    "Penggunaan Keuangan", "Pengawasan dan Evaluasi", "Pertanggungjawaban"
+];
 
-            bidangItem.innerHTML = `
-                <h4>${item.role}</h4>
-                <p>${item.name}</p>
-            `;
-            bidangContainer.appendChild(bidangItem);
-        });
-    }
+const persuratanTasks = [
+    "Surat Masuk, Keluar, Keterangan, Internal, Eksternal (Jenis)",
+    "Penerimaan dan Pencatatan", "Penyortiran dan Pendisposisian", 
+    "Pengolahan dan Pembuatan", "Pengarsipan", "Pengiriman"
+];
 
-    // 2. Fungsi untuk mengisi Detail Tambahan (Kesiswaan, Sarana, dll.)
-    function populateList(selector, dataArray) {
-        const ulElement = document.querySelector(`[data-section="${selector}"] ul`);
-        if (ulElement) {
-            ulElement.innerHTML = ''; // Bersihkan konten lama
-            dataArray.forEach(item => {
-                const li = document.createElement('li');
-                li.textContent = item;
-                ulElement.appendChild(li);
-            });
-        }
-    }
+const kesiswaanCounts = [
+    { kelas: "Kelas X", jumlah: 216 },
+    { kelas: "Kelas XI", jumlah: 252 },
+    { kelas: "Kelas XII", jumlah: 252 }
+];
 
-    populateList('kesiswaan', organisasiData.kesiswaan);
-    populateList('sarana', organisasiData.sarana.slice(0, 6)); // Ambil beberapa contoh untuk card
-    populateList('keuangan', organisasiData.keuangan);
-    populateList('persuratan', organisasiData.persuratan);
+const sarprasItems = [
+    "Meja, Kursi/Sofa", "Lemari Kecil, Rak Kecil", "Komputer, Keyboard, Printer", 
+    "Map, Kalender, Figuran, Tirai"
+];
 
-    // 3. Menambahkan animasi pada elemen yang sudah ada
-    // Untuk memastikan semua elemen 'fade-in' muncul setelah DOM siap.
-    const fadeInElements = document.querySelectorAll('.fade-in');
-    fadeInElements.forEach((el, index) => {
-        el.style.animationDelay = `${0.2 + (index * 0.1)}s`;
+// ===================================================
+// GENERATOR KONTEN (LOOPING)
+// ===================================================
+
+function generateStafCards() {
+    const container = document.getElementById('staf-area');
+    let htmlContent = '';
+
+    stafData.forEach(staf => {
+        htmlContent += `
+            <div class="card ${staf.type ? staf.type.toLowerCase() : 'staf-bidang'}">
+                <h4>${staf.bidang}</h4>
+                <p><strong>${staf.nama}</strong></p>
+            </div>
+        `;
+    });
+    container.innerHTML = htmlContent;
+}
+
+function generateInfoBlock(areaId, title, itemsArray) {
+    const container = document.getElementById(areaId);
+    let htmlContent = `<h4>${title}</h4><ul>`;
+
+    itemsArray.forEach(item => {
+        htmlContent += `<li>${item}</li>`;
     });
 
+    htmlContent += `</ul>`;
+    container.innerHTML = htmlContent;
+}
+
+function generateKesiswaanSarpras() {
+    const kesiswaanContainer = document.getElementById('kesiswaan-area');
+    let kesiswaanHTML = `<h4>Data Kesiswaan</h4>`;
+    
+    // Tabel Kesiswaan
+    kesiswaanHTML += `
+        <table>
+            <tr><th>Kelas</th><th>Jumlah Siswa</th></tr>
+    `;
+    kesiswaanCounts.forEach(data => {
+        kesiswaanHTML += `<tr><td>${data.kelas}</td><td>${data.jumlah}</td></tr>`;
+    });
+    kesiswaHTML += `</table>`;
+    
+    kesiswaanContainer.innerHTML = kesiswaanHTML;
+
+    // Sarpras (di blok terpisah)
+    const sarprasContainer = document.getElementById('sarpras-area');
+    let sarprasHTML = `<h4>Inventaris Sarana & Prasarana</h4><ul>`;
+    
+    sarprasItems.forEach(item => {
+        sarprasHTML += `<li>${item}</li>`;
+    });
+    sarprasHTML += `</ul>`;
+    
+    sarprasContainer.innerHTML = sarprasHTML;
+}
+
+// ===================================================
+// EKSEKUSI
+// ===================================================
+document.addEventListener('DOMContentLoaded', () => {
+    generateStafCards();
+    generateInfoBlock('keuangan-area', 'Administrasi Keuangan', keuanganTasks);
+    generateInfoBlock('persuratan-area', 'Surat Persuratan', persuratanTasks);
+    generateKesiswaanSarpras();
 });
