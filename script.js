@@ -21,7 +21,7 @@ const keuanganTasks = [
 ];
 
 const persuratanTasks = [
-    "Surat Masuk, Keluar, Keterangan, Internal, Eksternal",
+    "Surat Masuk, Keluar, Keterangan, Internal, Eksternal (Jenis)",
     "Penerimaan dan Pencatatan", "Penyortiran dan Pendisposisian", 
     "Pengolahan dan Pembuatan", "Pengarsipan", "Pengiriman"
 ];
@@ -33,12 +33,12 @@ const kesiswaanCounts = [
 ];
 
 const sarprasItems = [
-    "Meja", "Kursi/Sofa", "Lemari Kecil", "Rak Kecil", "Komputer", 
-    "Keyboard", "Printer", "Map", "Kalender", "Figuran", "Tirai"
+    "Meja, Kursi/Sofa", "Lemari Kecil, Rak Kecil", "Komputer, Keyboard, Printer", 
+    "Map, Kalender, Figuran, Tirai"
 ];
 
 // ===================================================
-// FUNGSI GENERATOR (Sama untuk Keuangan, Persuratan, Sarpras)
+// GENERATOR KONTEN (LOOPING)
 // ===================================================
 
 function generateStafCards() {
@@ -68,26 +68,33 @@ function generateInfoBlock(areaId, title, itemsArray) {
     container.innerHTML = htmlContent;
 }
 
-function generateKesiswaan() {
-    const container = document.getElementById('kesiswaan-area');
-    let htmlContent = `<h4>Data Kesiswaan</h4>`;
+function generateKesiswaanSarpras() {
+    const kesiswaanContainer = document.getElementById('kesiswaan-area');
+    let kesiswaanHTML = `<h4>Data Kesiswaan</h4>`;
     
-    // Kesiswaan menggunakan tabel
-    htmlContent += `
+    // Tabel Kesiswaan
+    kesiswaanHTML += `
         <table>
-            <thead>
-                <tr><th>Kelas</th><th>Jumlah Siswa</th></tr>
-            </thead>
-            <tbody>
+            <tr><th>Kelas</th><th>Jumlah Siswa</th></tr>
     `;
     kesiswaanCounts.forEach(data => {
-        htmlContent += `<tr><td>${data.kelas}</td><td>${data.jumlah}</td></tr>`;
+        kesiswaanHTML += `<tr><td>${data.kelas}</td><td>${data.jumlah}</td></tr>`;
     });
-    htmlContent += `</tbody></table>`;
+    kesiswaHTML += `</table>`;
     
-    container.innerHTML = htmlContent;
-}
+    kesiswaanContainer.innerHTML = kesiswaanHTML;
 
+    // Sarpras (di blok terpisah)
+    const sarprasContainer = document.getElementById('sarpras-area');
+    let sarprasHTML = `<h4>Inventaris Sarana & Prasarana</h4><ul>`;
+    
+    sarprasItems.forEach(item => {
+        sarprasHTML += `<li>${item}</li>`;
+    });
+    sarprasHTML += `</ul>`;
+    
+    sarprasContainer.innerHTML = sarprasHTML;
+}
 
 // ===================================================
 // EKSEKUSI
@@ -96,7 +103,5 @@ document.addEventListener('DOMContentLoaded', () => {
     generateStafCards();
     generateInfoBlock('keuangan-area', 'Administrasi Keuangan', keuanganTasks);
     generateInfoBlock('persuratan-area', 'Surat Persuratan', persuratanTasks);
-    generateKesiswaan(); 
-    // Sarpras menggunakan generateInfoBlock (sama seperti Persuratan)
-    generateInfoBlock('sarpras-area', 'Inventaris Sarana & Prasarana', sarprasItems); 
+    generateKesiswaanSarpras();
 });
