@@ -1,55 +1,83 @@
-// Data Bidang-Bidang untuk di-inject ke HTML
-const bidangData = [
-    { role: "Kesiswaan", name: "Yulianti" },
-    { role: "Sarana dan Prasarana", name: "Kuwat Yuliyono" },
-    { role: "Kepegawaian", name: "Temti Malau" },
-    { role: "Operator", name: "Per, S.Kom" },
-    { role: "Bendahara", name: "Sugati, S.Pd." },
-    { role: "Perpustakaan", name: "Aelis Yuningsih, S.Kom" },
-    { role: "Laboran", name: "Ananda Joel, S.E." }
-];
+document.addEventListener('DOMContentLoaded', () => {
+    // Data Struktur Organisasi
+    const organisasiData = {
+        bidang: [
+            { role: "Kesiswaan", name: "Yulianti" },
+            { role: "Sarana dan Prasarana", name: "Kuwat Yuliyono" },
+            { role: "Kepegawaian", name: "Temti Malau" },
+            { role: "Operator", name: "Per, S.Kom" },
+            { role: "Bendahara", name: "Sugati, S.Pd." },
+            { role: "Perpustakaan", name: "Aelis Yuningsih, S.Kom" },
+            { role: "Laboran", name: "Ananda Joel, S.E." }
+        ],
+        kesiswaan: [
+            "Kelas X : 216",
+            "Kelas XI : 252",
+            "Kelas XII : 252"
+        ],
+        sarana: [
+            "Meja", "Kursi/Sofa", "Lemari Kecil", "Rak Kecil",
+            "Komputer", "Keyboard", "Printer", "Map", "Kalender",
+            "Figuran", "Tirai"
+        ],
+        keuangan: [
+            "Laporan Pendapatan dan Pengeluaran",
+            "Laporan Aset dan Kewajiban",
+            "Kebijakan Akuntansi",
+            "Perencanaan Anggaran",
+            "Pengawasan dan Evaluasi",
+            "Pertanggungjawaban"
+        ],
+        persuratan: [
+            "Surat masuk dan keluar",
+            "Surat keterangan",
+            "Penerimaan dan pencatatan",
+            "Penyortiran dan pendisposisian",
+            "Pengarsipan",
+            "Pengiriman"
+        ]
+    };
 
-// Fungsi untuk membuat dan menampilkan grid Bidang-Bidang
-function renderBidangBidang() {
-    const container = document.getElementById('bidang-bidang');
-    
-    // Buat elemen grid
-    const grid = document.createElement('div');
-    grid.className = 'bidang-grid';
+    // 1. Fungsi untuk mengisi Bidang-Bidang
+    const bidangContainer = document.querySelector('.bidang-container');
+    if (bidangContainer) {
+        organisasiData.bidang.forEach((item, index) => {
+            const bidangItem = document.createElement('div');
+            bidangItem.classList.add('bidang-item', 'card');
+            // Menambahkan delay pada animasi fade-in
+            bidangItem.style.animationDelay = `${0.1 * index}s`;
 
-    bidangData.forEach(item => {
-        const itemDiv = document.createElement('div');
-        itemDiv.className = 'bidang-item';
-        
-        itemDiv.innerHTML = `
-            <p class="bidang-role">${item.role}</p>
-            <p class="bidang-name">${item.name}</p>
-        `;
-        grid.appendChild(itemDiv);
+            bidangItem.innerHTML = `
+                <h4>${item.role}</h4>
+                <p>${item.name}</p>
+            `;
+            bidangContainer.appendChild(bidangItem);
+        });
+    }
+
+    // 2. Fungsi untuk mengisi Detail Tambahan (Kesiswaan, Sarana, dll.)
+    function populateList(selector, dataArray) {
+        const ulElement = document.querySelector(`[data-section="${selector}"] ul`);
+        if (ulElement) {
+            ulElement.innerHTML = ''; // Bersihkan konten lama
+            dataArray.forEach(item => {
+                const li = document.createElement('li');
+                li.textContent = item;
+                ulElement.appendChild(li);
+            });
+        }
+    }
+
+    populateList('kesiswaan', organisasiData.kesiswaan);
+    populateList('sarana', organisasiData.sarana.slice(0, 6)); // Ambil beberapa contoh untuk card
+    populateList('keuangan', organisasiData.keuangan);
+    populateList('persuratan', organisasiData.persuratan);
+
+    // 3. Menambahkan animasi pada elemen yang sudah ada
+    // Untuk memastikan semua elemen 'fade-in' muncul setelah DOM siap.
+    const fadeInElements = document.querySelectorAll('.fade-in');
+    fadeInElements.forEach((el, index) => {
+        el.style.animationDelay = `${0.2 + (index * 0.1)}s`;
     });
 
-    container.appendChild(grid);
-}
-
-// Fungsi untuk Toggle (tampil/sembunyi) detail
-function toggleDetails(id) {
-    const detailsElement = document.getElementById(id);
-    const parentCard = detailsElement.closest('.card, .info-card');
-    const toggleIcon = parentCard.querySelector('.toggle-icon');
-
-    if (detailsElement.classList.contains('active')) {
-        detailsElement.classList.remove('active');
-        toggleIcon.classList.remove('rotated');
-    } else {
-        detailsElement.classList.add('active');
-        toggleIcon.classList.add('rotated');
-    }
-}
-
-// Panggil fungsi setelah DOM dimuat
-document.addEventListener('DOMContentLoaded', () => {
-    renderBidangBidang();
-    
-    // Pastikan fungsi toggleDetails bisa diakses dari HTML
-    window.toggleDetails = toggleDetails;
 });
