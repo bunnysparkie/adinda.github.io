@@ -33,8 +33,8 @@ const kesiswaanCounts = [
 ];
 
 const sarprasItems = [
-    "Meja, Kursi/Sofa", "Lemari Kecil, Rak Kecil", "Komputer, Keyboard, Printer", 
-    "Map, Kalender, Figuran, Tirai"
+    "Meja", "Kursi/Sofa", "Lemari Kecil", "Rak Kecil", "Komputer", 
+    "Keyboard", "Printer", "Map", "Kalender", "Figuran", "Tirai"
 ];
 
 // ===================================================
@@ -68,32 +68,30 @@ function generateInfoBlock(areaId, title, itemsArray) {
     container.innerHTML = htmlContent;
 }
 
-function generateKesiswaanSarpras() {
-    const kesiswaanContainer = document.getElementById('kesiswaan-area');
-    let kesiswaanHTML = `<h4>Data Kesiswaan</h4>`;
+// FUNGSI BARU: Khusus untuk Kesiswaan
+function generateKesiswaan() {
+    const container = document.getElementById('kesiswaan-area');
+    let htmlContent = `<h4>Data Kesiswaan</h4>`;
     
     // Tabel Kesiswaan
-    kesiswaanHTML += `
+    htmlContent += `
         <table>
-            <tr><th>Kelas</th><th>Jumlah Siswa</th></tr>
+            <thead>
+                <tr><th>Kelas</th><th>Jumlah Siswa</th></tr>
+            </thead>
+            <tbody>
     `;
     kesiswaanCounts.forEach(data => {
-        kesiswaanHTML += `<tr><td>${data.kelas}</td><td>${data.jumlah}</td></tr>`;
+        htmlContent += `<tr><td>${data.kelas}</td><td>${data.jumlah}</td></tr>`;
     });
-    kesiswaHTML += `</table>`;
+    htmlContent += `</tbody></table>`;
     
-    kesiswaanContainer.innerHTML = kesiswaanHTML;
+    container.innerHTML = htmlContent;
+}
 
-    // Sarpras (di blok terpisah)
-    const sarprasContainer = document.getElementById('sarpras-area');
-    let sarprasHTML = `<h4>Inventaris Sarana & Prasarana</h4><ul>`;
-    
-    sarprasItems.forEach(item => {
-        sarprasHTML += `<li>${item}</li>`;
-    });
-    sarprasHTML += `</ul>`;
-    
-    sarprasContainer.innerHTML = sarprasHTML;
+// FUNGSI BARU: Khusus untuk Sarpras (menggunakan generateInfoBlock)
+function generateSarpras() {
+    generateInfoBlock('sarpras-area', 'Inventaris Sarana & Prasarana', sarprasItems);
 }
 
 // ===================================================
@@ -103,5 +101,6 @@ document.addEventListener('DOMContentLoaded', () => {
     generateStafCards();
     generateInfoBlock('keuangan-area', 'Administrasi Keuangan', keuanganTasks);
     generateInfoBlock('persuratan-area', 'Surat Persuratan', persuratanTasks);
-    generateKesiswaanSarpras();
+    generateKesiswaan(); // Panggil Kesiswaan
+    generateSarpras(); // Panggil Sarpras
 });
